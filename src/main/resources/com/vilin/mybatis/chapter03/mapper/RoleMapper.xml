@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vilin.mybatis.chapter03.mapper.RoleMapper">
+
+    <resultMap id="roleMap" type="Role">
+        <id column="id" property="id" javaType="long" jdbcType="BIGINT"/>
+        <result column="role_name" property="roleName" javaType="string" jdbcType="VARCHAR"/>
+        <result column="note" property="note" typeHandler="com.vilin.mybatis.chapter03.typehandler.MyStringTypeHandler"/>
+    </resultMap>
+
+    <select id="getRole" parameterType="long" resultMap="roleMap">
+        select  id, role_name as rolename, note from t_role where id = #{id}
+    </select>
+
+    <select id="findRole" parameterType="string" resultMap="roleMap">
+        select id, role_name, note from t_role
+        where role_name like concat('%', #{roleName javaType=string, jdbcType=VARCHAR, typeHandler=com.vilin.mybatis.chapter03.typehandler.MyStringTypeHandler}, '%')
+    </select>
+
+    <insert id="insertRole" parameterType="role">
+        insert into t_role(role_name, note) values (#{roleName}, #{note})
+    </insert>
+    <delete id="deleteRole" parameterType="long">
+        delete from t_role where id = #{id}
+    </delete>
+</mapper>
