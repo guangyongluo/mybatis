@@ -2,14 +2,14 @@ package com.vilin.mybatis.chapter02.service;
 
 import com.vilin.mybatis.chapter02.mapper.RoleMapper;
 import com.vilin.mybatis.chapter02.po.Role;
+import com.vilin.mybatis.chapter04.service.Chapter4Main;
 import com.vilin.mybatis.util.SqlSessionFactoryUtil;
 import org.apache.ibatis.session.SqlSession;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Chapter2Main {
-    private static Logger logger = Logger.getLogger(SqlSessionFactoryUtil.class.getName());
+    private static Logger logger = LogManager.getLogger(Chapter4Main.class);
 
     public static void main(String[] args) {
         SqlSession sqlSession = null;
@@ -24,7 +24,7 @@ public class Chapter2Main {
             roleMapper.deleteRole(3L);
             sqlSession.commit();
         }catch (Exception e){
-            logger.log(Level.INFO, null, e);
+            logger.info(e);
             sqlSession.rollback();
         }finally {
             if(sqlSession != null){

@@ -1,18 +1,18 @@
 package com.vilin.mybatis.chapter03.service;
 
-import com.sun.istack.internal.logging.Logger;
 import com.vilin.mybatis.chapter03.mapper.RoleMapper;
 import com.vilin.mybatis.chapter03.mapper.UserMapper;
 import com.vilin.mybatis.chapter03.po.User;
 import com.vilin.mybatis.chapter03.util.Sex;
+import com.vilin.mybatis.chapter04.service.Chapter4Main;
 import com.vilin.mybatis.util.SqlSessionFactoryUtil;
 import org.apache.ibatis.session.SqlSession;
-
-import java.util.logging.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Chapter3Main {
 
-    private static Logger log = Logger.getLogger(Chapter3Main.class);
+    private static Logger logger = LogManager.getLogger(Chapter4Main.class);
 
     public static void main(String[] args) {
         SqlSession sqlSession = null;
@@ -39,7 +39,7 @@ public class Chapter3Main {
             System.out.println(userMapper.getUser(1L));
             sqlSession.commit();
         }catch (Exception e){
-            log.log(Level.INFO, null, e);
+            logger.info(e);
             sqlSession.rollback();
         }finally {
             if(sqlSession != null){

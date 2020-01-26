@@ -8,8 +8,8 @@
         <result property="cnname" column="cnname"/>
         <result property="sex" column="sex" javaType="sex" jdbcType="TINYINT" typeHandler="com.vilin.mybatis.chapter03.typehandler.SexEnumTypeHandler"/>
         <result property="note" column="note"/>
-        <association property="studentSelfcard" javaType="com.vilin.mybatis.chapter04.po.StudentSelfcard" column="id" select="com.vilin.mybatis.chapter04.mapper.StudentSelfcardMapper.findStudentSelfcardByStudentId"/>
-        <collection property="studentLectureList" ofType="com.vilin.mybatis.chapter04.po.StudentLecture" column="id" select="com.vilin.mybatis.chapter04.mapper.StudentLectureMapper.findStudentLectureByStudentId"/>
+        <association property="studentSelfcard" javaType="com.vilin.mybatis.chapter04.po.StudentSelfcard" column="id" fetchType="lazy" select="com.vilin.mybatis.chapter04.mapper.StudentSelfcardMapper.findStudentSelfcardByStudentId"/>
+        <collection property="studentLectureList" ofType="com.vilin.mybatis.chapter04.po.StudentLecture" column="id" fetchType="eager" select="com.vilin.mybatis.chapter04.mapper.StudentLectureMapper.findStudentLectureByStudentId"/>
         <discriminator javaType="int" column="sex">
             <case value="1" resultMap="maleStudentMap"/>
             <case value="2" resultMap="femaleStudentMap"/>
@@ -17,11 +17,11 @@
     </resultMap>
 
     <resultMap id="maleStudentMap" type="MaleStudent" extends="studentMap">
-        <collection property="studentHealthMaleList" ofType="com.vilin.mybatis.chapter04.po.StudentHealthMale" column="id" select="com.vilin.mybatis.chapter04.mapper.StudentHealthMaleMapper.findStudentHealthMaleByStudentId"/>
+        <collection property="studentHealthMaleList" ofType="com.vilin.mybatis.chapter04.po.StudentHealthMale" column="id" fetchType="lazy" select="com.vilin.mybatis.chapter04.mapper.StudentHealthMaleMapper.findStudentHealthMaleByStudentId"/>
     </resultMap>
 
     <resultMap id="femaleStudentMap" type="FemaleStudent" extends="studentMap">
-        <collection property="studentHealthFemaleList" ofType="com.vilin.mybatis.chapter04.po.StudentHealthFemale" column="id" select="com.vilin.mybatis.chapter04.mapper.StudentHealthFemaleMapper.findStudentHealthFemaleByStudentId"/>
+        <collection property="studentHealthFemaleList" ofType="com.vilin.mybatis.chapter04.po.StudentHealthFemale" column="id" fetchType="lazy" select="com.vilin.mybatis.chapter04.mapper.StudentHealthFemaleMapper.findStudentHealthFemaleByStudentId"/>
     </resultMap>
 
     <select id="getStudentById" parameterType="int" resultMap="studentMap">
