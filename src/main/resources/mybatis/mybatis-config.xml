@@ -8,6 +8,7 @@
         -->
         <typeAlias alias="sex" type="com.vilin.mybatis.chapter03.util.Sex"/>
         <package name="com.vilin.mybatis.chapter03.po"/>
+        <package name="com.vilin.mybatis.chapter04.po"/>
     </typeAliases>
     
     <typeHandlers>
@@ -33,5 +34,11 @@
     <mappers>
         <mapper resource="com/vilin/mybatis/chapter03/mapper/RoleMapper.xml"/>
         <mapper resource="com/vilin/mybatis/chapter03/mapper/UserMapper.xml"/>
+        <mapper resource="com/vilin/mybatis/chapter04/mapper/StudentMapper.xml"/>
+        <mapper resource="com/vilin/mybatis/chapter04/mapper/StudentSelfcardMapper.xml"/>
+        <mapper resource="com/vilin/mybatis/chapter04/mapper/LectureMapper.xml"/>
+        <mapper resource="com/vilin/mybatis/chapter04/mapper/StudentLectureMapper.xml"/>
+        <mapper resource="com/vilin/mybatis/chapter04/mapper/StudentHealthMaleMapper.xml"/>
+        <mapper resource="com/vilin/mybatis/chapter04/mapper/StudentHealthFemaleMapper.xml"/>
     </mappers>
 </configuration>
