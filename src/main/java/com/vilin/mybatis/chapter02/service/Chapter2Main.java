@@ -21,7 +21,9 @@ public class Chapter2Main {
 //            role.setNote("测试用户");
 //            roleMapper.insertRole(role);
 //            System.out.println(roleMapper.getRole(3L));
-            roleMapper.deleteRole(3L);
+//            roleMapper.deleteRole(1L);
+            System.out.println(roleMapper.getRole(1L));
+
             sqlSession.commit();
         }catch (Exception e){
             logger.info(e);

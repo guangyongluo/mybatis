@@ -20,7 +20,15 @@
     <typeHandlers>
         <package name="com.vilin.mybatis.chapter03.typehandler"/>
     </typeHandlers>
-    
+
+
+    <plugins>
+        <plugin interceptor="com.vilin.mybatis.chapter07.intercepter.MyPlugin">
+            <property name="dbtype" value="mysql"/>
+            <property name="limit" value="50"/>
+        </plugin>
+    </plugins>
+
     <!-- 定义数据库-->
     <environments default="development">
         <environment id="development">
@@ -39,6 +47,7 @@
     </environments>
 
     <mappers>
+        <mapper resource="com/vilin/mybatis/chapter02/mapper/RoleMapper.xml"/>
         <mapper resource="com/vilin/mybatis/chapter03/mapper/RoleMapper.xml"/>
         <mapper resource="com/vilin/mybatis/chapter03/mapper/UserMapper.xml"/>
         <mapper resource="com/vilin/mybatis/chapter04/mapper/StudentMapper.xml"/>
