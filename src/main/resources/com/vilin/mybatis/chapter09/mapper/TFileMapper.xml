@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.vilin.mybatis.chapter09.mapper.TFileMapper">
+    <insert id="insertTFile" keyProperty="id" useGeneratedKeys="true" parameterType="TFile">
+        insert into t_file(file) values (#{file})
+    </insert>
+
+    <select id="getTFile" parameterType="long" resultType="TFile">
+        select id, file from t_file where id = #{id}
+    </select>
+</mapper>

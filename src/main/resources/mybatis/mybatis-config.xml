@@ -15,6 +15,7 @@
         <typeAlias alias="sex" type="com.vilin.mybatis.chapter03.util.Sex"/>
         <package name="com.vilin.mybatis.chapter03.po"/>
         <package name="com.vilin.mybatis.chapter04.po"/>
+        <package name="com.vilin.mybatis.chapter09.pojo"/>
     </typeAliases>
     
     <typeHandlers>
@@ -22,13 +23,14 @@
     </typeHandlers>
 
 
+    <!--
     <plugins>
         <plugin interceptor="com.vilin.mybatis.chapter07.intercepter.MyPlugin">
             <property name="dbtype" value="mysql"/>
             <property name="limit" value="50"/>
         </plugin>
     </plugins>
-
+    -->
     <!-- 定义数据库-->
     <environments default="development">
         <environment id="development">
@@ -56,5 +58,7 @@
         <mapper resource="com/vilin/mybatis/chapter04/mapper/StudentLectureMapper.xml"/>
         <mapper resource="com/vilin/mybatis/chapter04/mapper/StudentHealthMaleMapper.xml"/>
         <mapper resource="com/vilin/mybatis/chapter04/mapper/StudentHealthFemaleMapper.xml"/>
+        <mapper resource="com/vilin/mybatis/chapter09/mapper/TFileMapper.xml"/>
+        <mapper resource="com/vilin/mybatis/chapter09/mapper/ProcedureMapper.xml"/>
     </mappers>
 </configuration>
