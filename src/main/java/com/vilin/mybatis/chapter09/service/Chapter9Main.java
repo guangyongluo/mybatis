@@ -1,10 +1,13 @@
 package com.vilin.mybatis.chapter09.service;
 
+import com.vilin.mybatis.chapter03.mapper.RoleMapper;
+import com.vilin.mybatis.chapter03.po.Role;
 import com.vilin.mybatis.chapter09.mapper.ProcedureMapper;
 import com.vilin.mybatis.chapter09.mapper.TFileMapper;
 import com.vilin.mybatis.chapter09.pojo.Procedure;
 import com.vilin.mybatis.chapter09.pojo.TFile;
 import com.vilin.mybatis.util.SqlSessionFactoryUtil;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import java.io.File;
@@ -12,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.logging.SimpleFormatter;
 
 public class Chapter9Main {
@@ -54,14 +58,21 @@ public class Chapter9Main {
 //                sqlSession.close();
 //            }
 //        }
+//        SqlSession sqlSession = SqlSessionFactoryUtil.openSqlSession();
+//        ProcedureMapper procedureMapper = sqlSession.getMapper(ProcedureMapper.class);
+//        int result = 0;
+//        Procedure procedure = new Procedure();
+//        procedure.setRoleName("role");
+//        procedureMapper.count(procedure);
+//        System.out.println(procedure.getRoleName() + "\t" + procedure.getResult() + "\t");
+//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//        System.out.println(df.format(procedure.getExecDate()));
+
         SqlSession sqlSession = SqlSessionFactoryUtil.openSqlSession();
-        ProcedureMapper procedureMapper = sqlSession.getMapper(ProcedureMapper.class);
-        int result = 0;
-        Procedure procedure = new Procedure();
-        procedure.setRoleName("role");
-        procedureMapper.count(procedure);
-        System.out.println(procedure.getRoleName() + "\t" + procedure.getResult() + "\t");
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        System.out.println(df.format(procedure.getExecDate()));
+        RoleMapper roleMapper = sqlSession.getMapper(RoleMapper.class);
+        List<Role> list = roleMapper.findRolesByName("role", new RowBounds(0, 5));
+        for(Role role : list){
+            System.out.println(role);
+        }
     }
 }
